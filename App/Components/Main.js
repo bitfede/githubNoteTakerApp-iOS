@@ -32,6 +32,8 @@ class Main extends React.Component {
   		isLoading: true
   	});
   	console.log('SUBMITTING: ' + this.state.username)
+  	//fetch data from github using fetch()
+  	//reroute to the next screen, passing that github information just fetched
   }
 	render() {
 		return (
