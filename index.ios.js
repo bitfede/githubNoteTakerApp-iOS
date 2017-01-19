@@ -15,14 +15,6 @@ import {
 var Main = require('./App/Components/Main')
 
 export default class githubNotetaker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '', //the name we input
-      isLoading: false,
-      error: false
-    }
-  }
   render() {
     return (
       <NavigatorIOS 

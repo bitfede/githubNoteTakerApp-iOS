@@ -13,10 +13,40 @@ import {
 
 
 class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '', //the name we input
+      isLoading: false, //this is used to display the loading spinner
+      error: false //this is to output some error message in case we need to
+    }
+  }
+  handleChange(event) {
+  	this.setState({
+  		username: event.nativeEvent.text
+  	});
+  }
+  handleSubmit() {
+  	//update our indicatorIOS spinner
+  	this.setState({
+  		isLoading: true
+  	});
+  	console.log('SUBMITTING: ' + this.state.username)
+  }
 	render() {
 		return (
 				<View style={styles.mainContainer}>
-					<Text>Testing the Router</Text>
+					<Text style={styles.title}>Search for a Github User</Text>
+					<TextInput
+					style={styles.searchInput} 
+					value={this.state.username} 
+					onChange={this.handleChange.bind(this)} />
+					<TouchableHighlight
+						style={styles.button}
+						onPress={this.handleSubmit.bind(this)}
+						underlayColor="white" >
+							<Text style={styles.buttonText}>SEARCH</Text>
+							</TouchableHighlight>
 				</View>
 			)
 	}
