@@ -9,7 +9,7 @@ import {
 	StyleSheet,
 	TextInput,
 	TouchableHighlight,
-	ActivityIndicatorIOS
+	ActivityIndicator
 } from 'react-native';
 
 
@@ -47,11 +47,13 @@ class Main extends React.Component {
   			//CASE when user is found
   			else {
   				console.log(res)
+  				//go to a new page
   				this.props.navigator.push({
   					title: res.name || "Select an Option",
   					component: Dashboard,
   					passProps: {userInfo: res}
   				});
+  				//reset the state of this component Main
   				this.setState({
   					isLoading: false,
   					error: false,
@@ -62,6 +64,9 @@ class Main extends React.Component {
   	//reroute to the next screen, passing that github information just fetched
   }
 	render() {
+		var showErr = (
+				this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+			);
 		return (
 				<View style={styles.mainContainer}>
 					<Text style={styles.title}>Search for a Github User</Text>
@@ -74,7 +79,12 @@ class Main extends React.Component {
 						onPress={this.handleSubmit.bind(this)}
 						underlayColor="white" >
 							<Text style={styles.buttonText}>SEARCH</Text>
-							</TouchableHighlight>
+							</TouchableHighlight> 
+							<ActivityIndicator
+							animating={this.state.isLoading}
+							color="#111"
+							size="large"></ActivityIndicator>
+							{showErr}							
 				</View>
 			)
 	}
