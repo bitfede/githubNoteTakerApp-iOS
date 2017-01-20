@@ -1,7 +1,8 @@
 // Main Component
 
 import React, { Component } from 'react';
-
+var api = require('../Utils/api')
+var Dashboard = require('./Dashboard')
 import {
 	Text,
 	View,
@@ -32,7 +33,32 @@ class Main extends React.Component {
   		isLoading: true
   	});
   	console.log('SUBMITTING: ' + this.state.username)
-  	//fetch data from github using fetch()
+  	//fetch data from github using fetch() in the utils/api.js file
+  	api.getBio(this.state.username) //this will return a promise
+  		.then((res) => {
+  			//CASE when user is not found
+  			if (res.message === "Not Found") { //this cuz we know what github returns
+  				this.setState({
+  					error: 'User Not Found',
+  					isLoading: false
+  				});
+  				console.log("user: " + this.state.username + " does not exist")
+  			}
+  			//CASE when user is found
+  			else {
+  				console.log(res)
+  				this.props.navigator.push({
+  					title: res.name || "Select an Option",
+  					component: Dashboard,
+  					passProps: {userInfo: res}
+  				});
+  				this.setState({
+  					isLoading: false,
+  					error: false,
+  					username: ''
+  				});
+  			}
+  		});
   	//reroute to the next screen, passing that github information just fetched
   }
 	render() {
