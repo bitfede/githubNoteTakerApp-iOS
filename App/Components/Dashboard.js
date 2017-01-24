@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+var Profile = require('./Profile')
 import {
 	Text,
 	View,
@@ -30,7 +31,13 @@ class Dashboard extends Component {
   }
 
   goToProfile() {
-    console.log("going to profile")
+    // console.log(this.props.userInfo)
+    var info = this.props.userInfo;
+    this.props.navigator.push({
+      title: info.name || "User",
+      component: Profile,
+      passProps: {userInfo: info}
+    });
   }
   goToRepos() {
     console.log("Going to repos")
