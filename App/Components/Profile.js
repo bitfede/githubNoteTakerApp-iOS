@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 var Badge = require('./Badge')
+var Separator = require('./Separator')
 import {
 	Text,
 	View,
@@ -46,6 +47,7 @@ class Profile extends React.Component {
 							<Text style={styles.rowTitle}  > {this.getRowTitle(userInfo, item)} </Text>
 							<Text style={styles.rowContent}> {userInfo[item]} </Text>
 						</View>
+						<Separator />
 					</View>
 				)
 			}
