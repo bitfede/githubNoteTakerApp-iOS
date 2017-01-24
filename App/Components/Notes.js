@@ -49,6 +49,7 @@ var styles = StyleSheet.create({
 //CLASS
 
 class Notes extends React.Component {
+	//-------
 	constructor(props) {
 		super(props)
 		this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
@@ -58,11 +59,13 @@ class Notes extends React.Component {
 			error: ''
 		}
 	}
+	//-------
 	handleChange(e) {
 		this.setState({
 			note: e.nativeEvent.text
 		});
 	}
+	//-------
 	handleSubmit() {
 		var note = this.state.note;
 		this.setState({
@@ -82,6 +85,7 @@ class Notes extends React.Component {
 				this.setState({error})
 			});
 	}
+	//-------
 	renderRow(rowData) {
 		return (
 			<View>
@@ -91,6 +95,7 @@ class Notes extends React.Component {
 			</View>
 		)
 	}
+	//-------
 	footer() {
 		return (
 			<View style={styles.container}>
@@ -108,20 +113,23 @@ class Notes extends React.Component {
 			</View>
 		)
 	}
+	//-------
 	render() {
-		<View style={styles.container}>
-			<ListView
-				dataSource={this.state.dataSource}
-				render={this.renderRow}
-				renderHeader={() => <Badge userInfo={this.props.userInfo} />} />
-			{this.footer()}
-		</View>
+		return (
+			<View style={styles.container}>
+				<ListView
+					dataSource={this.state.dataSource}
+					renderRow={this.renderRow}
+					renderHeader={() => <Badge userInfo={this.props.userInfo} />} />
+				{this.footer()}
+			</View>
+		)
 	}
 }
 
 
 Notes.propTypes = {
-	userInfo: React.PropTypes.object.isRequired
+	userInfo: React.PropTypes.object.isRequired,
 	notes: React.PropTypes.object.isRequired
 }
 
