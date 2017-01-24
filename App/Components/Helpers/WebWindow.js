@@ -14,7 +14,7 @@ var styles = StyleSheet.create({
 	}
 });
 
-class WebView extends React.Component {
+class WebWindow extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
@@ -24,8 +24,8 @@ class WebView extends React.Component {
 	}
 };
 
-WebView.propTypes = {
-	url: React.PropTyles.string.isRequired
+WebWindow.propTypes = {
+	url: React.PropTypes.string.isRequired
 }
 
 module.exports = WebView
