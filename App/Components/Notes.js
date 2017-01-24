@@ -92,6 +92,7 @@ class Notes extends React.Component {
 				<View style={styles.rowContainer}>
 					<Text> {rowData} </Text>
 				</View>
+				<Separator />
 			</View>
 		)
 	}
